@@ -7,9 +7,19 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 class LoginViewModel {
     var countries: [String] = []
+    
+    let sqliteManager = SQLiteManager()
+    let username: BehaviorRelay<String> = BehaviorRelay(value: "")
+    let password: BehaviorRelay<String> = BehaviorRelay(value: "")
+    let country: BehaviorRelay<String> = BehaviorRelay(value: "")
+    let errorMessage: BehaviorRelay<String> = BehaviorRelay(value: "")
+    let loginSuccessful: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    let loginDetailsComplete: BehaviorRelay<Bool> = BehaviorRelay(value: false)
 
     func fetchCountries() {
         for code in NSLocale.isoCountryCodes  {
@@ -17,6 +27,15 @@ class LoginViewModel {
             let name = NSLocale(localeIdentifier: "en_UK").displayName(forKey: NSLocale.Key.identifier, value: id) ?? "Country not found for code: \(code)"
             countries.append(name)
         }
-        print(countries)
+    }
+    
+    func login() {
+        sqliteManager.login(username: username.value, password: password.value) { (successful, error) in
+            if successful {
+                self.loginSuccessful.accept(true)
+            } else {
+                self.errorMessage.accept(error ?? "")
+            }
+        }
     }
 }

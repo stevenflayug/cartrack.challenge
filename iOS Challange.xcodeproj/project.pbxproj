@@ -8,12 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		2A94A8BB467E3A7C846F4626 /* Pods_iOS_Challange.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDDF144F2C2C3B9D458796E5 /* Pods_iOS_Challange.framework */; };
+		F018EB1C24E93F2400A2F4F1 /* SQLiteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018EB1B24E93F2400A2F4F1 /* SQLiteManager.swift */; };
 		F0D232D024E80AB90094070C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D232CF24E80AB90094070C /* AppDelegate.swift */; };
 		F0D232D224E80AB90094070C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D232D124E80AB90094070C /* SceneDelegate.swift */; };
 		F0D232D424E80AB90094070C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D232D324E80AB90094070C /* ContentView.swift */; };
 		F0D232D624E80ABA0094070C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0D232D524E80ABA0094070C /* Assets.xcassets */; };
-		F0D232D924E80ABA0094070C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0D232D824E80ABA0094070C /* Preview Assets.xcassets */; };
-		F0D232DC24E80ABA0094070C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0D232DA24E80ABA0094070C /* LaunchScreen.storyboard */; };
 		F0D232E724E80B3D0094070C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D232E524E80B3D0094070C /* LoginViewController.swift */; };
 		F0D232E824E80B3D0094070C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0D232E624E80B3D0094070C /* LoginViewController.xib */; };
 		F0D232EA24E80B500094070C /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D232E924E80B500094070C /* LoginViewModel.swift */; };
@@ -25,18 +24,18 @@
 		431B3D9CA3E6A924ADCB8B43 /* Pods-iOS Challange.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS Challange.release.xcconfig"; path = "Target Support Files/Pods-iOS Challange/Pods-iOS Challange.release.xcconfig"; sourceTree = "<group>"; };
 		BDDF144F2C2C3B9D458796E5 /* Pods_iOS_Challange.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_Challange.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F01528CE24E8306900708E69 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		F018EB1B24E93F2400A2F4F1 /* SQLiteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteManager.swift; sourceTree = "<group>"; };
 		F0D232CC24E80AB90094070C /* iOS Challange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Challange.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0D232CF24E80AB90094070C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0D232D124E80AB90094070C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F0D232D324E80AB90094070C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F0D232D524E80ABA0094070C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F0D232D824E80ABA0094070C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		F0D232DB24E80ABA0094070C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F0D232DD24E80ABA0094070C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0D232E524E80B3D0094070C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F0D232E624E80B3D0094070C /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		F0D232E924E80B500094070C /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		F0D232EC24E80EF10094070C /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		F0F447D824E93B6A008F5559 /* iOS Challange-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "iOS Challange-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +68,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F018EB1A24E93F1300A2F4F1 /* SQLite */ = {
+			isa = PBXGroup;
+			children = (
+				F018EB1B24E93F2400A2F4F1 /* SQLiteManager.swift */,
+			);
+			path = SQLite;
+			sourceTree = "<group>";
+		};
 		F0D232C324E80AB90094070C = {
 			isa = PBXGroup;
 			children = (
@@ -90,25 +97,17 @@
 		F0D232CE24E80AB90094070C /* iOS Challange */ = {
 			isa = PBXGroup;
 			children = (
+				F018EB1A24E93F1300A2F4F1 /* SQLite */,
 				F0D232EB24E80ED20094070C /* Extensions */,
 				F0D232E324E80B240094070C /* Views */,
 				F0D232CF24E80AB90094070C /* AppDelegate.swift */,
 				F0D232D124E80AB90094070C /* SceneDelegate.swift */,
 				F0D232D324E80AB90094070C /* ContentView.swift */,
 				F0D232D524E80ABA0094070C /* Assets.xcassets */,
-				F0D232DA24E80ABA0094070C /* LaunchScreen.storyboard */,
 				F0D232DD24E80ABA0094070C /* Info.plist */,
-				F0D232D724E80ABA0094070C /* Preview Content */,
+				F0F447D824E93B6A008F5559 /* iOS Challange-Bridging-Header.h */,
 			);
 			path = "iOS Challange";
-			sourceTree = "<group>";
-		};
-		F0D232D724E80ABA0094070C /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				F0D232D824E80ABA0094070C /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		F0D232E324E80B240094070C /* Views */ = {
@@ -199,8 +198,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0D232E824E80B3D0094070C /* LoginViewController.xib in Resources */,
-				F0D232DC24E80ABA0094070C /* LaunchScreen.storyboard in Resources */,
-				F0D232D924E80ABA0094070C /* Preview Assets.xcassets in Resources */,
 				F0D232D624E80ABA0094070C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,23 +255,13 @@
 				F0D232E724E80B3D0094070C /* LoginViewController.swift in Sources */,
 				F0D232D024E80AB90094070C /* AppDelegate.swift in Sources */,
 				F0D232D224E80AB90094070C /* SceneDelegate.swift in Sources */,
+				F018EB1C24E93F2400A2F4F1 /* SQLiteManager.swift in Sources */,
 				F0D232EA24E80B500094070C /* LoginViewModel.swift in Sources */,
 				F0D232D424E80AB90094070C /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		F0D232DA24E80ABA0094070C /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F0D232DB24E80ABA0094070C /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F0D232DE24E80ABA0094070C /* Debug */ = {
@@ -398,7 +385,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"iOS Challange/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "iOS Challange/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -421,7 +408,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"iOS Challange/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "iOS Challange/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (

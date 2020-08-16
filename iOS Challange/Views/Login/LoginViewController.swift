@@ -10,6 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 import PKHUD
+import SQLite3
 
 class LoginViewController: UIViewController {
     @IBOutlet weak var usernameLabel: UILabel!
@@ -21,17 +22,19 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @objc var countryPickerView = UIPickerView()
     
-    let viewModel = LoginViewModel()
-    let disposeBag = DisposeBag()
+    private let viewModel = LoginViewModel()
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.fetchCountries()
         setupUI()
         setupActions()
+        bindValues()
+        setupObservables()
     }
 
-    func setupUI() {
+    private func setupUI() {
         self.navigationController?.navigationBar.isHidden = true
         loginButton.layer.cornerRadius = 10
         
@@ -54,10 +57,60 @@ class LoginViewController: UIViewController {
         countryTextField.inputView = countryPickerView
     }
     
+    private func bindValues() {
+        //Bind username and password values
+        usernameTextField.rx.text
+            .orEmpty
+            .bind(to: viewModel.username)
+            .disposed(by: disposeBag)
+        
+        passwordTextField.rx.text
+            .orEmpty
+            .bind(to: viewModel.password)
+            .disposed(by: disposeBag)
+        
+        countryTextField.rx.text
+            .orEmpty
+            .bind(to: viewModel.country)
+            .disposed(by: disposeBag)
+        
+        validateFields().bind(to: viewModel.loginDetailsComplete).disposed(by: disposeBag)
+    }
+    
+    private func setupObservables() {
+        viewModel.loginSuccessful.asObservable().subscribe(onNext: { [unowned self] (successful) in
+            if successful {
+                HUD.flash(.success, onView: self.view, delay: 0.5, completion: nil)
+            }
+        }).disposed(by: disposeBag)
+        
+        viewModel.errorMessage.asObservable().subscribe(onNext: { (error) in
+            if error != "" {
+                HUD.flash(.labeledError(title: "Login Error", subtitle: error), onView: self.view, delay: 1, completion: nil)
+            }
+        }).disposed(by: disposeBag)
+    }
+    
+    private func validateFields() -> Observable<Bool> {
+        return Observable.combineLatest(viewModel.username, viewModel.password, viewModel.country)
+        { (username, password, country) in
+            return username.count > 0
+                && password.count > 0
+                && country.count > 0
+        }
+    }
+    
     // Actions
-    func setupActions() {
+    private func setupActions() {
         loginButton.rx.tap.bind { [unowned self] in
-            HUD.show(.success, onView: self.view)
+            if self.viewModel.loginDetailsComplete.value {
+                HUD.show(.progress, onView: self.view)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.viewModel.login()
+                }
+            } else {
+                HUD.flash(.labeledError(title: "Login Error", subtitle: "Please fill all fields to login"), onView: self.view, delay: 1, completion: nil)
+            }
         }.disposed(by: disposeBag)
     }
     
