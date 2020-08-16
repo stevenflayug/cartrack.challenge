@@ -35,6 +35,11 @@ class LoginViewController: UIViewController {
     }
 
     private func setupUI() {
+        //FOR TESTING
+//        usernameTextField.text = "stevenflayug"
+//        passwordTextField.text = "cartrack"
+//        countryTextField.text = "Pilipinas"
+        
         self.navigationController?.navigationBar.isHidden = true
         loginButton.layer.cornerRadius = 10
         
@@ -81,6 +86,9 @@ class LoginViewController: UIViewController {
         viewModel.loginSuccessful.asObservable().subscribe(onNext: { [unowned self] (successful) in
             if successful {
                 HUD.flash(.success, onView: self.view, delay: 0.5, completion: nil)
+                let userListVC = UserListTableViewController()
+                userListVC.modalPresentationCapturesStatusBarAppearance = true
+                self.navigationController?.pushViewController(userListVC, animated: true)
             }
         }).disposed(by: disposeBag)
         

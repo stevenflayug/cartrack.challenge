@@ -82,7 +82,7 @@ class SQLiteManager {
         }
     }
     
-    func login(username: String, password: String, completion: @escaping (_ success: Bool, _ error: String?) -> ()) {
+    func login(username: String, password: String, completion: @escaping (_ error: String?) -> ()) {
         do {
             let baseUrl = try
                 fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
@@ -102,15 +102,15 @@ class SQLiteManager {
                         let usernameString = String(cString: sqlite3_column_text(selectStatement, 0))
                         let passwordString = String(cString: sqlite3_column_text(selectStatement, 1))
                         print("\(usernameString) \(passwordString)")
-                        completion(true, nil)
+                        completion(nil)
                         sqlite3_finalize(selectStatement)
                         return
                     }
-                    completion(false, "Incorrect Username or Password")
+                    completion("Incorrect Username or Password")
                     sqlite3_finalize(selectStatement)
                     return
                 } else {
-                    completion(false, "Incorrect Username or Password")
+                    completion("Incorrect Username or Password")
                 }
                 sqlite3_finalize(selectStatement)
             }

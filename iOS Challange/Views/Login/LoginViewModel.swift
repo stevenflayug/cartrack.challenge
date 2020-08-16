@@ -30,8 +30,8 @@ class LoginViewModel {
     }
     
     func login() {
-        sqliteManager.login(username: username.value, password: password.value) { (successful, error) in
-            if successful {
+        sqliteManager.login(username: username.value, password: password.value) { (error) in
+            if error == nil {
                 self.loginSuccessful.accept(true)
             } else {
                 self.errorMessage.accept(error ?? "")

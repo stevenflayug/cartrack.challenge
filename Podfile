@@ -6,9 +6,9 @@ target 'iOS Challange' do
   use_frameworks!
 
   # Pods for iOS Challange
-    pod 'Alamofire'
     pod 'PKHUD'
     pod 'RxSwift',    '~> 4.0'
     pod 'RxCocoa',    '~> 4.0'
+    pod 'Moya'
 
 end
