@@ -60,6 +60,13 @@ class UserListTableViewController: UITableViewController {
             cell.setupCell(username: item.username, name: item.name)
         }.disposed(by: disposeBag)
         
+        tableView.rx.itemSelected.subscribe(onNext: { [weak self] (indexPath) in
+            guard self == self else { return }
+            let userDetailsVC = UserDetailsTableViewController()
+            userDetailsVC.user.accept(self!.viewModel.userList.value[indexPath.row])
+            self?.navigationController?.pushViewController(userDetailsVC, animated: true)
+        }).disposed(by: disposeBag)
+        
         viewModel.userList.asObservable().subscribe(onNext: { [unowned self] (_) in
             self.tableView.reloadData()
         }).disposed(by: disposeBag)

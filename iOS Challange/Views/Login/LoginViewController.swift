@@ -36,9 +36,9 @@ class LoginViewController: UIViewController {
 
     private func setupUI() {
         //FOR TESTING
-//        usernameTextField.text = "stevenflayug"
-//        passwordTextField.text = "cartrack"
-//        countryTextField.text = "Pilipinas"
+        usernameTextField.text = "stevenflayug"
+        passwordTextField.text = "cartrack"
+        countryTextField.text = "Pilipinas"
         
         self.navigationController?.navigationBar.isHidden = true
         loginButton.layer.cornerRadius = 10
@@ -55,7 +55,11 @@ class LoginViewController: UIViewController {
         toolBar.setItems([padding, doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true
 
+        passwordTextField.isSecureTextEntry = true
+        
         countryTextField.inputAccessoryView = toolBar
+        // For disabling manual editing
+        countryTextField.delegate = self
         
         countryPickerView.delegate = self
         countryPickerView.dataSource = self
@@ -86,10 +90,14 @@ class LoginViewController: UIViewController {
         viewModel.loginSuccessful.asObservable().subscribe(onNext: { [unowned self] (successful) in
             if successful {
                 HUD.flash(.success, onView: self.view, delay: 0.5, completion: nil)
-                let userListVC = UserListTableViewController()
-                userListVC.modalPresentationCapturesStatusBarAppearance = true
-                self.navigationController?.pushViewController(userListVC, animated: true)
-            }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        let userListVC = UserListTableViewController()
+                        userListVC.modalPresentationCapturesStatusBarAppearance = true
+                        self.navigationController?.pushViewController(userListVC, animated: true)
+                    }
+                }
+
         }).disposed(by: disposeBag)
         
         viewModel.errorMessage.asObservable().subscribe(onNext: { (error) in
@@ -142,5 +150,11 @@ extension LoginViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         countryTextField.text = viewModel.countries[row]
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return false
     }
 }

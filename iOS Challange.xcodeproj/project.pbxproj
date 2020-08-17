@@ -19,6 +19,10 @@
 		F018EB3024E9773700A2F4F1 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F018EB2E24E9773700A2F4F1 /* UserTableViewCell.xib */; };
 		F018EB3224E9834B00A2F4F1 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018EB3124E9834B00A2F4F1 /* UIColor+Extensions.swift */; };
 		F018EB3624E990D100A2F4F1 /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018EB3524E990D100A2F4F1 /* UINavigationController+Extensions.swift */; };
+		F0B9986624EAD80400AC85CC /* UserDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B9986424EAD80400AC85CC /* UserDetailsTableViewCell.swift */; };
+		F0B9986724EAD80400AC85CC /* UserDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0B9986524EAD80400AC85CC /* UserDetailsTableViewCell.xib */; };
+		F0B9986E24EADC1B00AC85CC /* NameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B9986C24EADC1B00AC85CC /* NameTableViewCell.swift */; };
+		F0B9986F24EADC1B00AC85CC /* NameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0B9986D24EADC1B00AC85CC /* NameTableViewCell.xib */; };
 		F0D232D024E80AB90094070C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D232CF24E80AB90094070C /* AppDelegate.swift */; };
 		F0D232D224E80AB90094070C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D232D124E80AB90094070C /* SceneDelegate.swift */; };
 		F0D232D424E80AB90094070C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D232D324E80AB90094070C /* ContentView.swift */; };
@@ -27,6 +31,11 @@
 		F0D232E824E80B3D0094070C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0D232E624E80B3D0094070C /* LoginViewController.xib */; };
 		F0D232EA24E80B500094070C /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D232E924E80B500094070C /* LoginViewModel.swift */; };
 		F0D232ED24E80EF10094070C /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D232EC24E80EF10094070C /* UIView+Extensions.swift */; };
+		F0E8BA7924EADD87004BC28E /* UserDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E8BA7724EADD87004BC28E /* UserDetailsTableViewController.swift */; };
+		F0E8BA7A24EADD87004BC28E /* UserDetailsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0E8BA7824EADD87004BC28E /* UserDetailsTableViewController.xib */; };
+		F0E8BA7C24EADDBD004BC28E /* UserDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E8BA7B24EADDBD004BC28E /* UserDetailsViewModel.swift */; };
+		F0E8BA8624EAF147004BC28E /* UserDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E8BA8424EAF147004BC28E /* UserDetailsHeaderView.swift */; };
+		F0E8BA8724EAF147004BC28E /* UserDetailsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0E8BA8524EAF147004BC28E /* UserDetailsHeaderView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +54,10 @@
 		F018EB2E24E9773700A2F4F1 /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 		F018EB3124E9834B00A2F4F1 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		F018EB3524E990D100A2F4F1 /* UINavigationController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extensions.swift"; sourceTree = "<group>"; };
+		F0B9986424EAD80400AC85CC /* UserDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		F0B9986524EAD80400AC85CC /* UserDetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDetailsTableViewCell.xib; sourceTree = "<group>"; };
+		F0B9986C24EADC1B00AC85CC /* NameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameTableViewCell.swift; sourceTree = "<group>"; };
+		F0B9986D24EADC1B00AC85CC /* NameTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NameTableViewCell.xib; sourceTree = "<group>"; };
 		F0D232CC24E80AB90094070C /* iOS Challange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Challange.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0D232CF24E80AB90094070C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0D232D124E80AB90094070C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +68,12 @@
 		F0D232E624E80B3D0094070C /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		F0D232E924E80B500094070C /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		F0D232EC24E80EF10094070C /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		F0E8BA7724EADD87004BC28E /* UserDetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsTableViewController.swift; sourceTree = "<group>"; };
+		F0E8BA7824EADD87004BC28E /* UserDetailsTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDetailsTableViewController.xib; sourceTree = "<group>"; };
+		F0E8BA7B24EADDBD004BC28E /* UserDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewModel.swift; sourceTree = "<group>"; };
+		F0E8BA8224EAF095004BC28E /* iOS Challange.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "iOS Challange.entitlements"; sourceTree = "<group>"; };
+		F0E8BA8424EAF147004BC28E /* UserDetailsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsHeaderView.swift; sourceTree = "<group>"; };
+		F0E8BA8524EAF147004BC28E /* UserDetailsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDetailsHeaderView.xib; sourceTree = "<group>"; };
 		F0F447D824E93B6A008F5559 /* iOS Challange-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "iOS Challange-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,6 +145,29 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		F0B9986224EAD7B000AC85CC /* UserDetails */ = {
+			isa = PBXGroup;
+			children = (
+				F0E8BA8324EAF120004BC28E /* Header */,
+				F0B9986324EAD7C000AC85CC /* Cells */,
+				F0E8BA7724EADD87004BC28E /* UserDetailsTableViewController.swift */,
+				F0E8BA7824EADD87004BC28E /* UserDetailsTableViewController.xib */,
+				F0E8BA7B24EADDBD004BC28E /* UserDetailsViewModel.swift */,
+			);
+			path = UserDetails;
+			sourceTree = "<group>";
+		};
+		F0B9986324EAD7C000AC85CC /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F0B9986424EAD80400AC85CC /* UserDetailsTableViewCell.swift */,
+				F0B9986524EAD80400AC85CC /* UserDetailsTableViewCell.xib */,
+				F0B9986C24EADC1B00AC85CC /* NameTableViewCell.swift */,
+				F0B9986D24EADC1B00AC85CC /* NameTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		F0D232C324E80AB90094070C = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +189,7 @@
 		F0D232CE24E80AB90094070C /* iOS Challange */ = {
 			isa = PBXGroup;
 			children = (
+				F0E8BA8224EAF095004BC28E /* iOS Challange.entitlements */,
 				F018EB1D24E9624A00A2F4F1 /* Networking */,
 				F018EB1A24E93F1300A2F4F1 /* SQLite */,
 				F0D232EB24E80ED20094070C /* Extensions */,
@@ -164,6 +207,7 @@
 		F0D232E324E80B240094070C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F0B9986224EAD7B000AC85CC /* UserDetails */,
 				F018EB2524E9753000A2F4F1 /* UserList */,
 				F0D232E424E80B2A0094070C /* Login */,
 			);
@@ -188,6 +232,15 @@
 				F018EB3524E990D100A2F4F1 /* UINavigationController+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F0E8BA8324EAF120004BC28E /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				F0E8BA8424EAF147004BC28E /* UserDetailsHeaderView.swift */,
+				F0E8BA8524EAF147004BC28E /* UserDetailsHeaderView.xib */,
+			);
+			path = Header;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,10 +304,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0B9986724EAD80400AC85CC /* UserDetailsTableViewCell.xib in Resources */,
 				F018EB3024E9773700A2F4F1 /* UserTableViewCell.xib in Resources */,
+				F0B9986F24EADC1B00AC85CC /* NameTableViewCell.xib in Resources */,
+				F0E8BA8724EAF147004BC28E /* UserDetailsHeaderView.xib in Resources */,
 				F0D232E824E80B3D0094070C /* LoginViewController.xib in Resources */,
 				F018EB2924E9754A00A2F4F1 /* UserListTableViewController.xib in Resources */,
 				F0D232D624E80ABA0094070C /* Assets.xcassets in Resources */,
+				F0E8BA7A24EADD87004BC28E /* UserDetailsTableViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0D232ED24E80EF10094070C /* UIView+Extensions.swift in Sources */,
+				F0B9986624EAD80400AC85CC /* UserDetailsTableViewCell.swift in Sources */,
 				F018EB2B24E9755D00A2F4F1 /* UserListViewModel.swift in Sources */,
 				F0D232E724E80B3D0094070C /* LoginViewController.swift in Sources */,
 				F0D232D024E80AB90094070C /* AppDelegate.swift in Sources */,
@@ -318,10 +376,14 @@
 				F018EB1F24E9626300A2F4F1 /* User.swift in Sources */,
 				F018EB1C24E93F2400A2F4F1 /* SQLiteManager.swift in Sources */,
 				F0D232EA24E80B500094070C /* LoginViewModel.swift in Sources */,
+				F0E8BA7C24EADDBD004BC28E /* UserDetailsViewModel.swift in Sources */,
 				F018EB3224E9834B00A2F4F1 /* UIColor+Extensions.swift in Sources */,
 				F018EB2324E96EC700A2F4F1 /* UserRequest.swift in Sources */,
+				F0E8BA8624EAF147004BC28E /* UserDetailsHeaderView.swift in Sources */,
+				F0B9986E24EADC1B00AC85CC /* NameTableViewCell.swift in Sources */,
 				F0D232D424E80AB90094070C /* ContentView.swift in Sources */,
 				F018EB3624E990D100A2F4F1 /* UINavigationController+Extensions.swift in Sources */,
+				F0E8BA7924EADD87004BC28E /* UserDetailsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +510,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "iOS Challange/iOS Challange.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
@@ -471,6 +534,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "iOS Challange/iOS Challange.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
