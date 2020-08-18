@@ -9,5 +9,5 @@
 import Foundation
 
 class UserDetailsViewModel {
-    
+    // Not much data processing in this screen, leaving this class empty
 }

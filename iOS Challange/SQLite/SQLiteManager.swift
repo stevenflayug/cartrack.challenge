@@ -35,21 +35,26 @@ class SQLiteManager {
                 
                 if sqlite3_exec(sqliteDB, sqlStatement, nil, nil, errorMessage) == SQLITE_OK {
                     print ("Table created")
+                    
+                    // Add user only on initial table creation
+                    insertUser()
                 } else {
-                    print ("Failed to create table")
+                    print ("Table already created")
                 }
-                
-                var statement: OpaquePointer?
-                let insertStatement = "INSERT INTO User (Username, Password) VALUES ('stevenflayug', 'cartrack');"
-                sqlite3_prepare_v2(sqliteDB, insertStatement, -1, &statement, nil)
-                if sqlite3_step(statement) == SQLITE_DONE {
-                    print ("Credentials inserted")
-                } else {
-                    print ("Credentials not inserted")
-                }
-                sqlite3_finalize(statement)
             }
         }
+    }
+    
+    func insertUser() {
+        var statement: OpaquePointer?
+        let insertStatement = "INSERT INTO User (Username, Password) VALUES ('stevenflayug', 'cartrack');"
+        sqlite3_prepare_v2(sqliteDB, insertStatement, -1, &statement, nil)
+        if sqlite3_step(statement) == SQLITE_DONE {
+            print ("Credentials inserted")
+        } else {
+            print ("Credentials not inserted")
+        }
+        sqlite3_finalize(statement)
     }
     
     func deleteUser() {

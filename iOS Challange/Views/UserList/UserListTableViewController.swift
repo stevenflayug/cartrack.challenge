@@ -11,8 +11,8 @@ import RxSwift
 import RxCocoa
 
 class UserListTableViewController: UITableViewController {
-    let viewModel = UserListViewModel()
-    let disposeBag = DisposeBag()
+    private let viewModel = UserListViewModel()
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +38,7 @@ class UserListTableViewController: UITableViewController {
         self.tableView.register(UINib(nibName: "UserTableViewCell", bundle: .main), forCellReuseIdentifier: "usercell")
     }
     
-    private func setupNavigationBar() {
+    func setupNavigationBar() {
         let titleLabel = UILabel()
         titleLabel.textColor = UIColor.white
         titleLabel.font = UIFont(name: "System Bold", size: 22)
@@ -61,7 +61,6 @@ class UserListTableViewController: UITableViewController {
         }.disposed(by: disposeBag)
         
         tableView.rx.itemSelected.subscribe(onNext: { [weak self] (indexPath) in
-            guard self == self else { return }
             let userDetailsVC = UserDetailsTableViewController()
             userDetailsVC.user.accept(self!.viewModel.userList.value[indexPath.row])
             self?.navigationController?.pushViewController(userDetailsVC, animated: true)

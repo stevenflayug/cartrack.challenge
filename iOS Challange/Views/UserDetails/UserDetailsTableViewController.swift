@@ -13,27 +13,30 @@ import RxCocoa
 class UserDetailsTableViewController: UITableViewController {
     private let viewModel = UserListViewModel()
     private let disposeBag = DisposeBag()
+    private var cellDisposeBag = DisposeBag()
+    
     var user: BehaviorRelay<UserData> = BehaviorRelay(value: UserData(id: 0, name: "", username: "", email: "", address: Address(street: "", suite: "", city: "", zipcode: "", geo: Geo(lat: "", lng: "")), phone: "", website: "", company: Company(name: "", catchPhrase: "", bs: "")))
     
-    enum tableSections: Int {
+    private enum tableSections: Int {
         case name
         case contact
         case company
     }
     
-    enum nameSectionRows: Int {
+    private enum nameSectionRows: Int {
         case name
         case userName
     }
     
-    enum contactSectionRows: Int {
+    private enum contactSectionRows: Int {
         case email
         case address
         case phone
         case website
+        case location
     }
     
-    enum companySectionRows: Int {
+    private enum companySectionRows: Int {
         case name
         case catchPhrase
         case bs
@@ -51,8 +54,7 @@ class UserDetailsTableViewController: UITableViewController {
     
     func setupObservables() {
         user.asObservable().subscribe(onNext: { [weak self] (_) in
-            guard self == self else { return }
-            self!.tableView.reloadData()
+            self?.tableView.reloadData()
         }).disposed(by: disposeBag)
     }
     
@@ -66,10 +68,11 @@ class UserDetailsTableViewController: UITableViewController {
         // Register Cell
         self.tableView.register(UINib(nibName: "UserDetailsTableViewCell", bundle: .main), forCellReuseIdentifier: "userdetailcell")
         self.tableView.register(UINib(nibName: "NameTableViewCell", bundle: .main), forCellReuseIdentifier: "namecell")
+        self.tableView.register(UINib(nibName: "UserLocationTableViewCell", bundle: nil), forCellReuseIdentifier: "userlocationcell")
         self.tableView.register(UINib(nibName: "UserDetailsHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "userdetailheader")
     }
     
-    private func setupNavigationBar() {
+    func setupNavigationBar() {
         let titleLabel = UILabel()
         titleLabel.textColor = UIColor.white
         titleLabel.font = UIFont(name: "System Bold", size: 22)
@@ -86,7 +89,7 @@ class UserDetailsTableViewController: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -95,8 +98,10 @@ class UserDetailsTableViewController: UITableViewController {
             return 2
         case .contact:
             return 4
-        default:
+        case .company:
             return 3
+        default:
+            return 1
         }
     }
 
@@ -125,7 +130,7 @@ class UserDetailsTableViewController: UITableViewController {
             default:
                 return setupDetailCell(indexPath, title: "Website", value: user.value.website)
             }
-        default:
+        case .company:
             switch companySectionRows(rawValue: indexPath.row) {
             case .name:
                 return setupDetailCell(indexPath, title: "Company Name", value: user.value.company.name)
@@ -134,6 +139,8 @@ class UserDetailsTableViewController: UITableViewController {
             default:
                 return setupDetailCell(indexPath, title: "Business Strategy", value: user.value.company.bs)
             }
+        default:
+            return setupLocationButtonCell(indexPath)
         }
     }
     
@@ -158,10 +165,24 @@ class UserDetailsTableViewController: UITableViewController {
             headerView.setupView(title: "")
         case .contact:
             headerView.setupView(title: "Contact Information")
-        default:
+        case .company:
             headerView.setupView(title: "Company Information")
+        default:
+            headerView.setupView(title: "User Location")
         }
         return headerView
     }
+    
+    func setupLocationButtonCell(_ indexPath: IndexPath) -> UITableViewCell {
+        cellDisposeBag = DisposeBag()
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "userlocationcell", for: indexPath) as! UserLocationTableViewCell
+        cell.getLocationButton.rx.tap.bind { [unowned self] in
+            let userLocationVC = UserLocationViewController()
+            userLocationVC.userLocationLat = Double(self.user.value.address.geo.lat)
+            userLocationVC.userLocationLong = Double(self.user.value.address.geo.lng)
+            self.navigationController?.pushViewController(userLocationVC, animated: true)
+        }.disposed(by: cellDisposeBag)
+        return cell
+    }
 }
-

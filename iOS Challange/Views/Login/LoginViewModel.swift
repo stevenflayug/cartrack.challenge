@@ -29,6 +29,10 @@ class LoginViewModel {
         }
     }
     
+    func setupSqliteCredentials() {
+        sqliteManager.addDefaultUser()
+    }
+    
     func login() {
         sqliteManager.login(username: username.value, password: password.value) { (error) in
             if error == nil {

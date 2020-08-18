@@ -27,6 +27,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.setupSqliteCredentials()
         viewModel.fetchCountries()
         setupUI()
         setupActions()
@@ -34,11 +35,11 @@ class LoginViewController: UIViewController {
         setupObservables()
     }
 
-    private func setupUI() {
+    func setupUI() {
         //FOR TESTING
         usernameTextField.text = "stevenflayug"
         passwordTextField.text = "cartrack"
-        countryTextField.text = "Pilipinas"
+        countryTextField.text = "Philippines"
         
         self.navigationController?.navigationBar.isHidden = true
         loginButton.layer.cornerRadius = 10
@@ -55,6 +56,13 @@ class LoginViewController: UIViewController {
         toolBar.setItems([padding, doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true
 
+        usernameLabel.text = "Username"
+        passwordLabel.text = "Password"
+        countryLabel.text = "Country"
+        usernameTextField.placeholder = "Enter Username"
+        passwordTextField.placeholder = "Enter Password"
+        countryTextField.placeholder = "Select Country"
+        
         passwordTextField.isSecureTextEntry = true
         
         countryTextField.inputAccessoryView = toolBar
@@ -66,7 +74,7 @@ class LoginViewController: UIViewController {
         countryTextField.inputView = countryPickerView
     }
     
-    private func bindValues() {
+    func bindValues() {
         //Bind username and password values
         usernameTextField.rx.text
             .orEmpty
@@ -86,12 +94,12 @@ class LoginViewController: UIViewController {
         validateFields().bind(to: viewModel.loginDetailsComplete).disposed(by: disposeBag)
     }
     
-    private func setupObservables() {
+    func setupObservables() {
         viewModel.loginSuccessful.asObservable().subscribe(onNext: { [unowned self] (successful) in
             if successful {
-                HUD.flash(.success, onView: self.view, delay: 0.5, completion: nil)
+                HUD.flash(.success, onView: self.view, delay: 1.0, completion: nil)
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                         let userListVC = UserListTableViewController()
                         userListVC.modalPresentationCapturesStatusBarAppearance = true
                         self.navigationController?.pushViewController(userListVC, animated: true)
@@ -107,7 +115,7 @@ class LoginViewController: UIViewController {
         }).disposed(by: disposeBag)
     }
     
-    private func validateFields() -> Observable<Bool> {
+    func validateFields() -> Observable<Bool> {
         return Observable.combineLatest(viewModel.username, viewModel.password, viewModel.country)
         { (username, password, country) in
             return username.count > 0
@@ -117,11 +125,11 @@ class LoginViewController: UIViewController {
     }
     
     // Actions
-    private func setupActions() {
+    func setupActions() {
         loginButton.rx.tap.bind { [unowned self] in
             if self.viewModel.loginDetailsComplete.value {
                 HUD.show(.progress, onView: self.view)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                     self.viewModel.login()
                 }
             } else {
@@ -131,6 +139,9 @@ class LoginViewController: UIViewController {
     }
     
     @objc func doneTapped() {
+        if countryPickerView.selectedRow(inComponent: 0) == 0 {
+            countryTextField.text = viewModel.countries[0]
+        }
         countryTextField.resignFirstResponder()
     }
 }

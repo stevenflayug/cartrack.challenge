@@ -20,10 +20,10 @@ class UserTableViewCell: UITableViewCell {
         setupUI()
     }
     
-    private func setupUI() {
+    func setupUI() {
         containerView.layer.cornerRadius = 10
-        usernameTitle.text = "Username"
-        nameTitle.text = "Name"
+        usernameTitle.text = "Username:"
+        nameTitle.text = "Name:"
     }
     
     func setupCell(username: String, name: String) {
