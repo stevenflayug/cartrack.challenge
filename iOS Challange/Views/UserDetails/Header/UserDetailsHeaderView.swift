@@ -17,6 +17,7 @@ class UserDetailsHeaderView: UITableViewHeaderFooterView {
     }
     
     func setupView(title: String) {
+        titleLabel.font = UIFont(name: "Montserrat", size: 17.0)
         titleLabel.text = title
     }
 }

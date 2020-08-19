@@ -17,6 +17,7 @@ class NameTableViewCell: UITableViewCell {
     }
 
     func setupCell(name: String) {
+        valueLabel.font = UIFont(name: "Montserrat-SemiBold", size: 19)
         valueLabel.text = name
     }
 }

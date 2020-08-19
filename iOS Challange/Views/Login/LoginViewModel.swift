@@ -20,6 +20,7 @@ class LoginViewModel {
     let errorMessage: BehaviorRelay<String> = BehaviorRelay(value: "")
     let loginSuccessful: BehaviorRelay<Bool> = BehaviorRelay(value: false)
     let loginDetailsComplete: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    let showPassword: BehaviorRelay<Bool> = BehaviorRelay(value: false)
 
     func fetchCountries() {
         for code in NSLocale.isoCountryCodes  {

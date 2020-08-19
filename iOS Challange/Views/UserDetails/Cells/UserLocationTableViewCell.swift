@@ -12,14 +12,15 @@ import RxSwift
 
 class UserLocationTableViewCell: UITableViewCell {
     @IBOutlet weak var getLocationButton: UIButton!
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         setupUI()
     }
     
-    func setupUI() {
+    private func setupUI() {
+        getLocationButton.titleLabel?.font =  UIFont(name: "Montserrat", size: 17.0)
         getLocationButton.setTitle("Show Location", for: .normal)
         getLocationButton.layer.cornerRadius = 10
     }

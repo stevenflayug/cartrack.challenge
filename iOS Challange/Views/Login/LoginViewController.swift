@@ -20,6 +20,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var countryLabel: UILabel!
     @IBOutlet weak var countryTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var showHidePasswordButton: UIButton!
     @objc var countryPickerView = UIPickerView()
     
     private let viewModel = LoginViewModel()
@@ -29,19 +30,35 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         viewModel.setupSqliteCredentials()
         viewModel.fetchCountries()
+        setupNavigationBar()
         setupUI()
         setupActions()
         bindValues()
         setupObservables()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        resetValues()
+    }
+    
+    private func setupNavigationBar() {
+           let titleLabel = UILabel()
+           titleLabel.textColor = UIColor.white
+           titleLabel.font = UIFont(name: "Montserrat-SemiBold", size: 19)
+           titleLabel.text = "Log in"
+           titleLabel.frame = CGRect(x: 0, y: 0, width: 60, height: 34)
+           navigationItem.titleView = titleLabel
+           
+           navigationItem.setHidesBackButton(true, animated: true)
+           navigationController?.navigationBar.isHidden = false
+           navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+           navigationController?.setStatusBar(backgroundColor: .userListLightBlue)
+           navigationController?.navigationBar.backgroundColor = .userListLightBlue
+           navigationController?.navigationBar.isTranslucent = true
+           navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+       }
 
-    func setupUI() {
-        //FOR TESTING
-        usernameTextField.text = "stevenflayug"
-        passwordTextField.text = "cartrack"
-        countryTextField.text = "Philippines"
-        
-        self.navigationController?.navigationBar.isHidden = true
+    private func setupUI() {
         loginButton.layer.cornerRadius = 10
         
         let toolBar = UIToolbar()
@@ -56,12 +73,23 @@ class LoginViewController: UIViewController {
         toolBar.setItems([padding, doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true
 
+        usernameLabel.font = UIFont(name: "Montserrat", size: 17.0)
+        usernameLabel.font = UIFont(name: "Montserrat", size: 17.0)
+        passwordLabel.font = UIFont(name: "Montserrat", size: 17.0)
+        countryLabel.font = UIFont(name: "Montserrat", size: 17.0)
+        usernameTextField.font = UIFont(name: "Montserrat", size: 17.0)
+        passwordTextField.font = UIFont(name: "Montserrat", size: 17.0)
+        passwordTextField.setRightPaddingPoints(35.0)
+        countryTextField.font = UIFont(name: "Montserrat", size: 17.0)
+        loginButton.titleLabel?.font =  UIFont(name: "Montserrat-SemiBold", size: 17.0)
+        
         usernameLabel.text = "Username"
         passwordLabel.text = "Password"
         countryLabel.text = "Country"
         usernameTextField.placeholder = "Enter Username"
         passwordTextField.placeholder = "Enter Password"
         countryTextField.placeholder = "Select Country"
+        loginButton.setTitle("SIGN IN", for: .normal)
         
         passwordTextField.isSecureTextEntry = true
         
@@ -74,7 +102,7 @@ class LoginViewController: UIViewController {
         countryTextField.inputView = countryPickerView
     }
     
-    func bindValues() {
+    private func bindValues() {
         //Bind username and password values
         usernameTextField.rx.text
             .orEmpty
@@ -94,12 +122,12 @@ class LoginViewController: UIViewController {
         validateFields().bind(to: viewModel.loginDetailsComplete).disposed(by: disposeBag)
     }
     
-    func setupObservables() {
+    private func setupObservables() {
         viewModel.loginSuccessful.asObservable().subscribe(onNext: { [unowned self] (successful) in
             if successful {
-                HUD.flash(.success, onView: self.view, delay: 1.0, completion: nil)
+                HUD.flash(.success, onView: self.view, delay: 0.5, completion: nil)
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         let userListVC = UserListTableViewController()
                         userListVC.modalPresentationCapturesStatusBarAppearance = true
                         self.navigationController?.pushViewController(userListVC, animated: true)
@@ -113,9 +141,19 @@ class LoginViewController: UIViewController {
                 HUD.flash(.labeledError(title: "Login Error", subtitle: error), onView: self.view, delay: 1, completion: nil)
             }
         }).disposed(by: disposeBag)
+        
+        viewModel.showPassword.asObservable().subscribe(onNext: { [unowned self] (show) in
+            if show {
+                self.passwordTextField.isSecureTextEntry = false
+                self.showHidePasswordButton.setImage(UIImage(named: "hidePassword"), for: .normal)
+            } else {
+                self.passwordTextField.isSecureTextEntry = true
+                self.showHidePasswordButton.setImage(UIImage(named: "showPassword"), for: .normal)
+            }
+        }).disposed(by: disposeBag)
     }
     
-    func validateFields() -> Observable<Bool> {
+    private func validateFields() -> Observable<Bool> {
         return Observable.combineLatest(viewModel.username, viewModel.password, viewModel.country)
         { (username, password, country) in
             return username.count > 0
@@ -124,8 +162,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    // Actions
-    func setupActions() {
+    private func setupActions() {
         loginButton.rx.tap.bind { [unowned self] in
             if self.viewModel.loginDetailsComplete.value {
                 HUD.show(.progress, onView: self.view)
@@ -136,6 +173,20 @@ class LoginViewController: UIViewController {
                 HUD.flash(.labeledError(title: "Login Error", subtitle: "Please fill all fields to login"), onView: self.view, delay: 1, completion: nil)
             }
         }.disposed(by: disposeBag)
+        
+        showHidePasswordButton.rx.tap.bind { [weak self] in
+            if self?.viewModel.showPassword.value == true {
+                self?.viewModel.showPassword.accept(false)
+            } else {
+                self?.viewModel.showPassword.accept(true)
+            }
+        }.disposed(by: disposeBag)
+    }
+    
+    private func resetValues() {
+        usernameTextField.text = ""
+        passwordTextField.text = ""
+        countryTextField.text = ""
     }
     
     @objc func doneTapped() {

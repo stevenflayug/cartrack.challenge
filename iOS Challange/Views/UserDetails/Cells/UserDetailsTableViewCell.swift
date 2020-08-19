@@ -18,6 +18,8 @@ class UserDetailsTableViewCell: UITableViewCell {
     }
     
     func setupCell(title: String, value: String) {
+        titleLabel.font = UIFont(name: "Montserrat", size: 15.0)
+        valueLabel.font = UIFont(name: "Montserrat", size: 15.0)
         titleLabel.text = title
         valueLabel.text = value
     }

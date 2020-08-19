@@ -19,6 +19,9 @@
 		F018EB3024E9773700A2F4F1 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F018EB2E24E9773700A2F4F1 /* UserTableViewCell.xib */; };
 		F018EB3224E9834B00A2F4F1 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018EB3124E9834B00A2F4F1 /* UIColor+Extensions.swift */; };
 		F018EB3624E990D100A2F4F1 /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018EB3524E990D100A2F4F1 /* UINavigationController+Extensions.swift */; };
+		F02ABAB324ED78DE00B895B8 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02ABAB224ED78DE00B895B8 /* UITextField+Extensions.swift */; };
+		F02ABABD24ED8C1700B895B8 /* Montserrat.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F02ABABB24ED8C1700B895B8 /* Montserrat.ttf */; };
+		F02ABABE24ED8C1700B895B8 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F02ABABC24ED8C1700B895B8 /* Montserrat-SemiBold.ttf */; };
 		F0B9986624EAD80400AC85CC /* UserDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B9986424EAD80400AC85CC /* UserDetailsTableViewCell.swift */; };
 		F0B9986724EAD80400AC85CC /* UserDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0B9986524EAD80400AC85CC /* UserDetailsTableViewCell.xib */; };
 		F0B9986E24EADC1B00AC85CC /* NameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B9986C24EADC1B00AC85CC /* NameTableViewCell.swift */; };
@@ -59,6 +62,9 @@
 		F018EB2E24E9773700A2F4F1 /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 		F018EB3124E9834B00A2F4F1 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		F018EB3524E990D100A2F4F1 /* UINavigationController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extensions.swift"; sourceTree = "<group>"; };
+		F02ABAB224ED78DE00B895B8 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
+		F02ABABB24ED8C1700B895B8 /* Montserrat.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Montserrat.ttf; sourceTree = "<group>"; };
+		F02ABABC24ED8C1700B895B8 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		F0B9986424EAD80400AC85CC /* UserDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		F0B9986524EAD80400AC85CC /* UserDetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDetailsTableViewCell.xib; sourceTree = "<group>"; };
 		F0B9986C24EADC1B00AC85CC /* NameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameTableViewCell.swift; sourceTree = "<group>"; };
@@ -155,6 +161,23 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		F02ABAAC24ED44C600B895B8 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				F02ABABA24ED8C0800B895B8 /* Fonts */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		F02ABABA24ED8C0800B895B8 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F02ABABB24ED8C1700B895B8 /* Montserrat.ttf */,
+				F02ABABC24ED8C1700B895B8 /* Montserrat-SemiBold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		F0B9986224EAD7B000AC85CC /* UserDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +245,7 @@
 				F0D232D524E80ABA0094070C /* Assets.xcassets */,
 				F0D232DD24E80ABA0094070C /* Info.plist */,
 				F0F447D824E93B6A008F5559 /* iOS Challange-Bridging-Header.h */,
+				F02ABAAC24ED44C600B895B8 /* Utils */,
 			);
 			path = "iOS Challange";
 			sourceTree = "<group>";
@@ -253,6 +277,7 @@
 				F0D232EC24E80EF10094070C /* UIView+Extensions.swift */,
 				F018EB3124E9834B00A2F4F1 /* UIColor+Extensions.swift */,
 				F018EB3524E990D100A2F4F1 /* UINavigationController+Extensions.swift */,
+				F02ABAB224ED78DE00B895B8 /* UITextField+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -327,11 +352,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F02ABABE24ED8C1700B895B8 /* Montserrat-SemiBold.ttf in Resources */,
 				F0CF609424EC215100B154F2 /* UserLocationViewController.xib in Resources */,
 				F0B9986724EAD80400AC85CC /* UserDetailsTableViewCell.xib in Resources */,
 				F018EB3024E9773700A2F4F1 /* UserTableViewCell.xib in Resources */,
 				F0B9986F24EADC1B00AC85CC /* NameTableViewCell.xib in Resources */,
 				F0E8BA8724EAF147004BC28E /* UserDetailsHeaderView.xib in Resources */,
+				F02ABABD24ED8C1700B895B8 /* Montserrat.ttf in Resources */,
 				F0D232E824E80B3D0094070C /* LoginViewController.xib in Resources */,
 				F0CF608F24EC1D8200B154F2 /* UserLocationTableViewCell.xib in Resources */,
 				F018EB2924E9754A00A2F4F1 /* UserListTableViewController.xib in Resources */,
@@ -398,6 +425,7 @@
 				F0D232D024E80AB90094070C /* AppDelegate.swift in Sources */,
 				F018EB2F24E9773700A2F4F1 /* UserTableViewCell.swift in Sources */,
 				F0D232D224E80AB90094070C /* SceneDelegate.swift in Sources */,
+				F02ABAB324ED78DE00B895B8 /* UITextField+Extensions.swift in Sources */,
 				F018EB2824E9754A00A2F4F1 /* UserListTableViewController.swift in Sources */,
 				F018EB2124E962C900A2F4F1 /* UserRouter.swift in Sources */,
 				F018EB1F24E9626300A2F4F1 /* User.swift in Sources */,

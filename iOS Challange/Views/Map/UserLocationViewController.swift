@@ -21,9 +21,10 @@ class UserLocationViewController: UIViewController, MKMapViewDelegate {
     
     private let locationManager = CLLocationManager()
     
+    var name: String!
     var userLocationLat: Double!
     var userLocationLong: Double!
-    var locationMeterDistance = 10000
+    var locationMeterDistance = 100000
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +37,7 @@ class UserLocationViewController: UIViewController, MKMapViewDelegate {
         setupNavigationBar()
     }
     
-    func setupObservables() {
+    private func setupObservables() {
         viewModel.locationAuthorized.asObservable().subscribe(onNext: { [weak self] (authorized) in
             if authorized {
                 self?.focusViewOnUserLocation()
@@ -62,46 +63,39 @@ class UserLocationViewController: UIViewController, MKMapViewDelegate {
         }).disposed(by: disposeBag)
     }
     
-    func setupMapView() {
+    private func setupMapView() {
         mapView.delegate = self
     }
     
-    func setupNavigationBar() {
+    private func setupNavigationBar() {
         let titleLabel = UILabel()
         titleLabel.textColor = UIColor.white
-        titleLabel.font = UIFont(name: "System Bold", size: 22)
-        titleLabel.text = "User Location"
+        titleLabel.font = UIFont(name: "Montserrat-SemiBold", size: 15)
+        titleLabel.text = "\(name ?? "")'s Location"
         titleLabel.frame = CGRect(x: 0, y: 0, width: 60, height: 34)
         navigationItem.titleView = titleLabel
         
         navigationController?.navigationBar.tintColor = UIColor.white
-        navigationController?.navigationBar.isHidden = false
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navigationController?.setStatusBar(backgroundColor: .userListLightBlue)
-        navigationController?.navigationBar.backgroundColor = .userListLightBlue
-        navigationController?.navigationBar.isTranslucent = true
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
-    func setupLocationManager() {
+    private func setupLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
     
-    func focusViewOnUserLocation() {
+    private func focusViewOnUserLocation() {
         mapView.showsUserLocation = true
         let userLocation = CLLocationCoordinate2DMake(userLocationLat, userLocationLong)
         let region = MKCoordinateRegion.init(center: userLocation, latitudinalMeters: CLLocationDistance(locationMeterDistance), longitudinalMeters: CLLocationDistance(locationMeterDistance))
         annotation.coordinate = userLocation
+        
         mapView.addAnnotation(annotation)
         mapView.setRegion(region, animated: true)
     }
 }
 
 extension UserLocationViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-    }
-    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedAlways || status == .authorizedWhenInUse {
 

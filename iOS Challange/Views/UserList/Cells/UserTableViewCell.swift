@@ -20,8 +20,13 @@ class UserTableViewCell: UITableViewCell {
         setupUI()
     }
     
-    func setupUI() {
+    private func setupUI() {
         containerView.layer.cornerRadius = 10
+        usernameTitle.font = UIFont(name: "Montserrat", size: 15.0)
+        nameTitle.font = UIFont(name: "Montserrat", size: 15.0)
+        usernameLabel.font = UIFont(name: "Montserrat", size: 15.0)
+        nameLabel.font = UIFont(name: "Montserrat", size: 15.0)
+        
         usernameTitle.text = "Username:"
         nameTitle.text = "Name:"
     }

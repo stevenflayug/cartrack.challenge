@@ -52,13 +52,13 @@ class UserDetailsTableViewController: UITableViewController {
         setupNavigationBar()
     }
     
-    func setupObservables() {
+    private func setupObservables() {
         user.asObservable().subscribe(onNext: { [weak self] (_) in
             self?.tableView.reloadData()
         }).disposed(by: disposeBag)
     }
     
-    func setupTableView() {
+    private func setupTableView() {
         tableView.estimatedRowHeight = 50.0
         tableView.rowHeight = UITableView.automaticDimension
         tableView.sectionHeaderHeight = UITableView.automaticDimension
@@ -72,20 +72,16 @@ class UserDetailsTableViewController: UITableViewController {
         self.tableView.register(UINib(nibName: "UserDetailsHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "userdetailheader")
     }
     
-    func setupNavigationBar() {
+    private func setupNavigationBar() {
         let titleLabel = UILabel()
         titleLabel.textColor = UIColor.white
-        titleLabel.font = UIFont(name: "System Bold", size: 22)
+        titleLabel.font = UIFont(name: "Montserrat-SemiBold", size: 19)
         titleLabel.text = "User Details"
         titleLabel.frame = CGRect(x: 0, y: 0, width: 60, height: 34)
         navigationItem.titleView = titleLabel
         
         navigationController?.navigationBar.tintColor = UIColor.white
-        navigationController?.navigationBar.isHidden = false
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navigationController?.setStatusBar(backgroundColor: .userListLightBlue)
-        navigationController?.navigationBar.backgroundColor = .userListLightBlue
-        navigationController?.navigationBar.isTranslucent = true
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -144,21 +140,21 @@ class UserDetailsTableViewController: UITableViewController {
         }
     }
     
-    func setupNameCell(_ indexPath: IndexPath, name: String) -> UITableViewCell {
+    private func setupNameCell(_ indexPath: IndexPath, name: String) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "namecell", for: indexPath) as! NameTableViewCell
         cell.setupCell(name: name)
         cell.selectionStyle = .none
         return cell
     }
     
-    func setupDetailCell(_ indexPath: IndexPath, title: String, value: String) -> UITableViewCell {
+    private func setupDetailCell(_ indexPath: IndexPath, title: String, value: String) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "userdetailcell", for: indexPath) as! UserDetailsTableViewCell
         cell.setupCell(title: title, value: value)
         cell.selectionStyle = .none
         return cell
     }
     
-    func setupTableHeaderView(_ section: Int) -> UIView {
+    private func setupTableHeaderView(_ section: Int) -> UIView {
         let headerView = Bundle.main.loadNibNamed("UserDetailsHeaderView", owner: self, options: nil)?.last as! UserDetailsHeaderView
         switch tableSections(rawValue: section) {
         case .name:
@@ -173,12 +169,13 @@ class UserDetailsTableViewController: UITableViewController {
         return headerView
     }
     
-    func setupLocationButtonCell(_ indexPath: IndexPath) -> UITableViewCell {
+    private func setupLocationButtonCell(_ indexPath: IndexPath) -> UITableViewCell {
         cellDisposeBag = DisposeBag()
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "userlocationcell", for: indexPath) as! UserLocationTableViewCell
         cell.getLocationButton.rx.tap.bind { [unowned self] in
             let userLocationVC = UserLocationViewController()
+            userLocationVC.name = self.user.value.name
             userLocationVC.userLocationLat = Double(self.user.value.address.geo.lat)
             userLocationVC.userLocationLong = Double(self.user.value.address.geo.lng)
             self.navigationController?.pushViewController(userLocationVC, animated: true)
